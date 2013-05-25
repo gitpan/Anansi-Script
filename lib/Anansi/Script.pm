@@ -46,7 +46,7 @@ L<Anansi::ComponentManager> for inherited methods.
 =cut
 
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use base qw(Anansi::ComponentManager);
 
