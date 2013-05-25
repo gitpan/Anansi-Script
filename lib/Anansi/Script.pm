@@ -40,12 +40,13 @@ Anansi::Script - Manages how Perl script user input and process output should be
 
 Determines the medium used to run the Perl Script and implements the resources
 to handle the user input and process output.  Simplifies the interaction
-mechanism and enables the Perl Script to be used in different mediums.
+mechanism and enables the Perl Script to be used in different mediums.  See
+L<Anansi::ComponentManager> for inherited methods.
 
 =cut
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use base qw(Anansi::ComponentManager);
 
@@ -72,7 +73,7 @@ sub addComponent {
 
  $OBJECT::SUPER->finalise(@_);
 
-An overridden Virtual method called during object destruction.  Not intended to
+An overridden virtual method called during object destruction.  Not intended to
 be directly called unless overridden by a descendant.
 
 =cut
@@ -93,7 +94,7 @@ sub finalise {
 
  $OBJECT::SUPER->initialise(@_);
 
-An Overridden Virtual method called during object creation.  Not intended to be
+An overridden virtual method called during object creation.  Not intended to be
 directly called unless overridden by a descendant.
 
 =cut
@@ -129,7 +130,7 @@ sub channelComponent {
     foreach my $channel (@{$componentChannels}) {
         next if('VALIDATE_AS_APPROPRIATE' eq $channel);
         if(defined($channels)) {
-            next if(defined(%{$channels}->{$componentChannel}));
+            next if(defined(${$channels}{$componentChannel}));
         }
         if(exists(&{ref($self).'::'.$channel})) {
             $self->addChannel(
